@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Paperhound</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header><img src="icons/icon48.png" alt="" width="32" height="32"><h1>Paperhound</h1></header>
+
+  <div class="labelrow">
+    <label for="title">Paper title, arXiv ID, DOI or link</label>
+    <button id="paste" type="button" class="linkbtn">Paste</button>
+  </div>
+  <textarea id="title" rows="3" placeholder="Highlight a title on the page, or paste a title, arXiv ID, DOI or link"></textarea>
+  <button id="go" type="button">Check venues and code</button>
+
+  <div id="identity" aria-live="polite"></div>
+  <div id="venues" aria-live="polite"></div>
+  <div id="code" aria-live="polite"></div>
+
+  <details class="keys">
+    <summary>Optional keys</summary>
+    <p class="note">Stored only in this browser. A GitHub token raises the search rate limit. Kaggle credentials let the extension list matching notebooks and datasets.</p>
+    <label for="ghToken">GitHub token</label>
+    <input id="ghToken" type="password" autocomplete="off">
+    <label for="kUser">Kaggle username</label>
+    <input id="kUser" type="text" autocomplete="off">
+    <label for="kKey">Kaggle API key</label>
+    <input id="kKey" type="password" autocomplete="off">
+  </details>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

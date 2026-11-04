@@ -1,0 +1,94 @@
+{
+  "manifest_version": 3,
+  "name": "Paperhound",
+  "version": "1.2.1",
+  "description": "Finds where a paper was published (CVPR, ICCV, ECCV, NeurIPS, AAAI, Pattern Recognition, CAAI, IEEE) and its official code on GitHub and Kaggle. Works on paper pages and PDFs.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "contextMenus",
+    "clipboardRead",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://dblp.org/*",
+    "https://api.semanticscholar.org/*",
+    "https://api.openalex.org/*",
+    "https://api.crossref.org/*",
+    "https://export.arxiv.org/*",
+    "https://huggingface.co/*",
+    "https://api.github.com/*",
+    "https://www.kaggle.com/*"
+  ],
+  "action": {
+    "default_title": "Paperhound",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://arxiv.org/abs/*",
+        "https://openreview.net/forum*",
+        "https://openaccess.thecvf.com/*",
+        "https://proceedings.neurips.cc/*",
+        "https://papers.nips.cc/*",
+        "https://ieeexplore.ieee.org/document/*",
+        "https://www.semanticscholar.org/paper/*",
+        "https://ojs.aaai.org/*",
+        "https://www.sciencedirect.com/science/article/*",
+        "https://link.springer.com/chapter/*",
+        "https://huggingface.co/papers/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "render.js",
+        "search.js",
+        "popup.css",
+        "icons/icon48.png"
+      ],
+      "matches": [
+        "https://arxiv.org/abs/*",
+        "https://openreview.net/forum*",
+        "https://openaccess.thecvf.com/*",
+        "https://proceedings.neurips.cc/*",
+        "https://papers.nips.cc/*",
+        "https://ieeexplore.ieee.org/document/*",
+        "https://www.semanticscholar.org/paper/*",
+        "https://ojs.aaai.org/*",
+        "https://www.sciencedirect.com/science/article/*",
+        "https://link.springer.com/chapter/*",
+        "https://huggingface.co/papers/*"
+      ]
+    }
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+P"
+      },
+      "description": "Open Paperhound"
+    }
+  }
+}
